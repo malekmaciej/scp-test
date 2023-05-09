@@ -10,7 +10,7 @@ def create_role(session, role_name) -> str:
         )
         return response["Role"]["Arn"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def create_role_with_tags(session, role_name, key, value) -> str:
@@ -28,10 +28,10 @@ def create_role_with_tags(session, role_name, key, value) -> str:
         )
         return response['Role']['Arn']
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
-def create_tag_role(session, role_name, key, value) -> int:
+def tag_role(session, role_name, key, value) -> int:
     iam = session.client('iam')
     try:
         response = iam.tag_role(
@@ -45,7 +45,7 @@ def create_tag_role(session, role_name, key, value) -> int:
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def delete_role(session, role_name) -> int:
@@ -56,10 +56,10 @@ def delete_role(session, role_name) -> int:
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
-def delete_tag_role(session, role_name, key):
+def untag_role(session, role_name, key):
     iam = session.client('iam')
     try:
         response = iam.untag_role(
@@ -70,7 +70,7 @@ def delete_tag_role(session, role_name, key):
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def attach_role_policy(session, role_name, policy_arn) -> int:
@@ -82,7 +82,7 @@ def attach_role_policy(session, role_name, policy_arn) -> int:
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def dettach_role_policy(session, role_name, policy_arn) -> None:
@@ -94,7 +94,7 @@ def dettach_role_policy(session, role_name, policy_arn) -> None:
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def create_policy(session, policy_name, policy_document):
@@ -106,7 +106,7 @@ def create_policy(session, policy_name, policy_document):
         )
         return response["Policy"]["Arn"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def create_policy_with_tags(session, policy_name, policy_document, key, value):
@@ -124,7 +124,7 @@ def create_policy_with_tags(session, policy_name, policy_document, key, value):
         )
         return response["Policy"]["Arn"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
 def delete_policy(session, policy_name):
@@ -135,10 +135,10 @@ def delete_policy(session, policy_name):
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
-def create_tag_policy(session, policy_name, key, value):
+def tag_policy(session, policy_name, key, value):
     iam = session.client('iam')
     try:
         response = iam.tag_policy(
@@ -152,10 +152,10 @@ def create_tag_policy(session, policy_name, key, value):
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
 
 
-def delete_tag_policy(session, policy_name, key):
+def untag_policy(session, policy_name, key):
     iam = session.client('iam')
     try:
         response = iam.untag_policy(
@@ -166,4 +166,4 @@ def delete_tag_policy(session, policy_name, key):
         )
         return response["ResponseMetadata"]["HTTPStatusCode"]
     except Exception as e:
-        print(e)
+        return "ERROR"
